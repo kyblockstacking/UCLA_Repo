@@ -1,0 +1,49 @@
+<!-- Context.html -->
+<!-- How Timeout's function with this -->
+
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+
+    <title>Context</title>
+
+  </head>
+
+  <body>
+
+    <!-- Script -->
+    <script type="text/javascript">
+
+      // person object with two methods
+      var person = {
+        name: "Jeff",
+        sayHi: function() {
+          console.log("Hi, I'm " + this.name);
+          console.log(this);
+        },
+        sayBye: function() {
+          // delay saying bye by one second
+          // however, the setTimeout function has lost what "this" means
+          setTimeout(function() {
+            console.log("Bye, " + this.name);
+            console.log(this);
+          }, 1000);
+        }
+      };
+
+      person.sayHi();
+      person.sayBye();
+
+      // the new context that setTimeout creates also presents a problem if we were to put the delay outside of the object
+      // by the time setTimeout calls the sayHi function, it doesn't realize it's part of an object anymore
+      setTimeout(person.sayHi, 2000);
+
+    </script>
+
+  </body>
+
+</html>

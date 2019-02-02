@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jQuery this</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style>
+    .btn {
+      /* adds a slight animation to the font-size change */
+      transition: font-size .1s;
+    }
+
+    .fancy-font {
+      font-size: 20px;
+      font-family: "Comic Sans MS";
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" data-name="joe">click me</button>
+  <button class="btn" data-name="jenny">no, click me</button>
+  <button class="btn" data-name="jill">please click me</button>
+
+  <script>
+    $(".btn").on("click", function() {
+      // we can run conditionals based on data relating to the button that was just clicked
+      // hasClass is a useful jQuery method to check if an element already has a css class or not
+      if ($(this).hasClass("fancy-font")) {
+        $(this).removeClass("fancy-font");
+      }
+      else {
+        $(this).addClass("fancy-font");
+      }
+    });
+
+    // note that it's one click event doing two different things depending on the current state of the button
+  </script>
+</body>
+</html>

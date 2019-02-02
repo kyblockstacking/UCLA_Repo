@@ -1,0 +1,11 @@
+<ul class="list-group">
+	{{#each books}}
+		<li class="list-group-item">
+			{{title}} 
+			
+			{{#if firstName}} 
+				by {{firstName}} {{lastName}} 
+			{{/if}}
+		</li>
+	{{/each}}
+</ul>

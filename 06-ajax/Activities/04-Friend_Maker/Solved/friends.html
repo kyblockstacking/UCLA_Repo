@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Friend Maker 3000</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- insert rows of friends here -->
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    function makeFriends() {
+      // call the random user api to get three friend objects
+      $.ajax({
+        url: "https://randomuser.me/api/?results=3",
+        method: "GET"
+      }).then(function(response) {
+        // the friends array is a property of the response object
+        var friends = response.results;
+
+        // start our bootstrap row in memory
+        var row = $("<div>").addClass("row");
+
+        // loop over the friends
+        for (var i = 0; i < friends.length; i++) {
+          // create a column div for each friend
+          var col = $("<div>").addClass("col-md-4 text-center");
+
+          // create an h2 element with the friend's name inside
+          var name = $("<h2>").text(friends[i].name.first + " " + friends[i].name.last);
+
+          // create an image tag with the friend's picture
+          var img = $("<img>").attr("src", friends[i].picture.large);
+
+          // put the h2 and img tag inside of the column
+          col.append(name, img);
+
+          // put the column inside of the row
+          row.append(col);
+        }
+
+        // add the row to the dom
+        $(".container").append(row);
+
+        // call the function again 3 seconds later
+        setTimeout(makeFriends, 3000);
+      });
+    }
+
+    // call function for the first time
+    makeFriends();
+  </script>
+
+</body>
+
+</html>

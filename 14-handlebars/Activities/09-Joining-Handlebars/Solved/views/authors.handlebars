@@ -1,0 +1,11 @@
+<ul class="list-group">
+	{{#each authors}}
+		<li class="list-group-item">
+      {{firstName}} {{lastName}}
+
+      {{#if title}}
+        wrote <strong>{{title}}</strong>
+      {{/if}}
+		</li>
+	{{/each}}
+</ul>
